@@ -7,12 +7,16 @@
                 </div>
             </div>
             <div class="row align-items-center justify-content-around my-3">
-                <TriviaOption :option="questions[step].o[0]" :result="showResult" @click.native="answer(questions[step], 0)"/>
-                <TriviaOption :option="questions[step].o[1]" :result="showResult" @click.native="answer(questions[step], 1)"/>
+                <TriviaOption :option="questions[step].o[0]" :result="showResult"
+                              @click.native="answer(questions[step], 0)"/>
+                <TriviaOption :option="questions[step].o[1]" :result="showResult"
+                              @click.native="answer(questions[step], 1)"/>
             </div>
             <div class="row align-items-center justify-content-around my-3">
-                <TriviaOption :option="questions[step].o[2]" :result="showResult" @click.native="answer(questions[step], 2)"/>
-                <TriviaOption :option="questions[step].o[3]" :result="showResult" @click.native="answer(questions[step], 3)"/>
+                <TriviaOption :option="questions[step].o[2]" :result="showResult"
+                              @click.native="answer(questions[step], 2)"/>
+                <TriviaOption :option="questions[step].o[3]" :result="showResult"
+                              @click.native="answer(questions[step], 3)"/>
             </div>
         </div>
 
@@ -34,7 +38,7 @@
         },
         data() {
             return {
-                questions,
+                questions: questions.getRandom(10),
                 step: 0,
                 correctAnswerCount: 0,
                 correctAnswers: [],
