@@ -7,20 +7,12 @@
                 </div>
             </div>
             <div class="row align-items-center justify-content-around my-3">
-                <div class="col-5 bg-green p-2" @click="answer(questions[step].o[0].c, questions[step])">
-                    <h3 class="m-0">{{ questions[step].o[0].n }}. {{ questions[step].o[0].a }}</h3>
-                </div>
-                <div class="col-5 bg-green p-2" @click="answer(questions[step].o[1].c, questions[step])">
-                    <h3 class="m-0">{{ questions[step].o[1].n }}. {{ questions[step].o[1].a }}</h3>
-                </div>
+                <TriviaOption :option="questions[step].o[0]" :result="showResult" @click.native="answer(questions[step], 0)"/>
+                <TriviaOption :option="questions[step].o[1]" :result="showResult" @click.native="answer(questions[step], 1)"/>
             </div>
             <div class="row align-items-center justify-content-around my-3">
-                <div class="col-5 bg-green p-2" @click="answer(questions[step].o[2].c, questions[step])">
-                    <h3 class="m-0">{{ questions[step].o[2].n }}. {{ questions[step].o[2].a }}</h3>
-                </div>
-                <div class="col-5 bg-green p-2" @click="answer(questions[step].o[3].c, questions[step])">
-                    <h3 class="m-0">{{ questions[step].o[3].n }}. {{ questions[step].o[3].a }}</h3>
-                </div>
+                <TriviaOption :option="questions[step].o[2]" :result="showResult" @click.native="answer(questions[step], 2)"/>
+                <TriviaOption :option="questions[step].o[3]" :result="showResult" @click.native="answer(questions[step], 3)"/>
             </div>
         </div>
 
@@ -33,30 +25,41 @@
 <script>
     import questions from "../questions";
     import Axios from "axios";
+    import TriviaOption from "../components/TriviaOption";
 
     export default {
         name: "Trivia",
+        components: {
+            TriviaOption
+        },
         data() {
             return {
                 questions,
                 step: 0,
                 correctAnswerCount: 0,
                 correctAnswers: [],
-                showLoader: false
+                showLoader: false,
+                showResult: false
             }
         },
         methods: {
-            async answer(correct, answer) {
+            async answer(answer, i) {
+                let correct = answer.o[i].c;
                 this.correctAnswerCount += correct;
 
                 if (correct) {
                     this.correctAnswers.push(answer);
+                } else {
+                    //
                 }
 
                 if (this.step < questions.length - 1) {
-                    this.step++
+                    setTimeout(() => this.step++, 2000);
+                    this.showResult = true;
+                    setTimeout(() => this.showResult = false, 1998);
                 } else {
-                    this.showLoader = true;
+                    setTimeout(() => this.showLoader = true, 2000);
+                    this.showResult = true;
 
                     await this.$store.dispatch('setQuestions', this.correctAnswers);
                     await this.$store.dispatch('setScore', this.correctAnswerCount * 10);
@@ -67,7 +70,8 @@
 
                     await Axios.post(url, data, config);
 
-                    return await this.$router.push({name: 'result'})
+                    setTimeout(() => this.showResult = false, 1998);
+                    setTimeout(() => this.$router.push({name: 'result'}), 2000);
                 }
             }
         }
