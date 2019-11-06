@@ -53,11 +53,9 @@
 
                 if (correct) {
                     this.correctAnswers.push(answer);
-                } else {
-                    //
                 }
 
-                if (this.step < questions.length - 1) {
+                if (this.step < this.questions.length - 1) {
                     setTimeout(() => this.step++, 2000);
                     this.showResult = true;
                     setTimeout(() => this.showResult = false, 1998);
