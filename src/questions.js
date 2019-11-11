@@ -417,32 +417,6 @@ const questions = {
             ]
         },
         {
-            "i": 17,
-            "q": "¿ Cual es la Ley de La Propiedad Horizontal ?",
-            "o": [
-                {
-                    "n": "A",
-                    "a": "Ley 13.512",
-                    "c": true
-                },
-                {
-                    "n": "B",
-                    "a": "Ley 20.744",
-                    "c": false
-                },
-                {
-                    "n": "C",
-                    "a": "Ley 17.418",
-                    "c": false
-                },
-                {
-                    "n": "D",
-                    "a": "Ninguna es correcta",
-                    "c": false
-                }
-            ]
-        },
-        {
             "i": 18,
             "q": "El libro de firmas, ¿se reemplazó con el libro de propietarios (homologado en 2017) ?",
             "o": [

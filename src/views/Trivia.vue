@@ -38,7 +38,7 @@
         },
         data() {
             return {
-                questions: questions.getRandom(10),
+                questions: questions.getRandom(5),
                 step: 0,
                 correctAnswerCount: 0,
                 correctAnswers: [],
